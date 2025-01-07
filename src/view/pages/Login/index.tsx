@@ -21,8 +21,9 @@ export function Login() {
         </p>
       </header>
       <form className="mt-[60px] flex flex-col gap-4">
-        <Input type="email" />
-        <Input type="password" />
+        <Input type="email" placeholder="Email" name="email" />
+        <Input type="password" placeholder="Senha" name="password" />
+
         <button type="submit" className="bg-teal-900 text-white">
           Entrar
         </button>
