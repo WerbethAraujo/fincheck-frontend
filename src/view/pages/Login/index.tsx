@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Input } from "../../components/Input";
+import { Button } from "../../components/Button";
 
 export function Login() {
   return (
@@ -24,9 +25,7 @@ export function Login() {
         <Input type="email" placeholder="Email" name="email" />
         <Input type="password" placeholder="Senha" name="password" />
 
-        <button type="submit" className="bg-teal-900 text-white">
-          Entrar
-        </button>
+        <Button type="submit">Entrar</Button>
       </form>
     </div>
   );
