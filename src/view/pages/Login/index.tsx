@@ -4,8 +4,8 @@ import { Button } from "../../components/Button";
 
 export function Login() {
   return (
-    <div>
-      <header className="flex flex-col items-center justify-center">
+    <>
+      <header className="flex flex-col items-center justify-center text-center">
         <h1 className="text-2xl font-bold text-gray-900 tracking-[-1px]">
           Entre em sua conta
         </h1>
@@ -27,6 +27,6 @@ export function Login() {
 
         <Button type="submit">Entrar</Button>
       </form>
-    </div>
+    </>
   );
 }
