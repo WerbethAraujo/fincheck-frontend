@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
+import { useRegisterController } from "./useRegisterController";
 
 export function Register() {
+  const { handleSubmit, register, errors } = useRegisterController();
   return (
     <>
       <header className="flex flex-col items-center justify-center text-center">
@@ -21,10 +23,25 @@ export function Register() {
           </Link>
         </p>
       </header>
-      <form className="mt-[60px] flex flex-col gap-4">
-        <Input placeholder="Nome" name="name" />
-        <Input type="email" placeholder="Email" name="email" />
-        <Input type="password" placeholder="Senha" name="password" />
+
+      <form onSubmit={handleSubmit} className="mt-[60px] flex flex-col gap-4">
+        <Input
+          placeholder="Nome"
+          {...register("name")}
+          error={errors.name?.message}
+        />
+        <Input
+          type="email"
+          placeholder="Email"
+          error={errors.email?.message}
+          {...register("email")}
+        />
+        <Input
+          type="password"
+          placeholder="Senha"
+          error={errors.password?.message}
+          {...register("password")}
+        />
 
         <Button type="submit">Criar conta</Button>
       </form>
