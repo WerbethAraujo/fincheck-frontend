@@ -24,8 +24,13 @@ export function Login() {
         </p>
       </header>
       <form onSubmit={handleSubmit} className="mt-[60px] flex flex-col gap-4">
-        <Input type="email" placeholder="Email" {...register("email")} />
-        {errors.email && <span>{errors.email.message}</span>}
+        <Input
+          type="email"
+          placeholder="Email"
+          {...register("email")}
+          error="Digite um email valido!"
+        />
+
         <Input type="password" placeholder="Senha" {...register("password")} />
         {errors.password && <span>{errors.password.message}</span>}
 
