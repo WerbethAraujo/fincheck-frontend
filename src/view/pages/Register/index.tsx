@@ -4,7 +4,7 @@ import { Button } from "../../components/Button";
 import { useRegisterController } from "./useRegisterController";
 
 export function Register() {
-  const { handleSubmit, register, errors } = useRegisterController();
+  const { handleSubmit, register, errors, isLoading } = useRegisterController();
   return (
     <>
       <header className="flex flex-col items-center justify-center text-center">
@@ -43,7 +43,9 @@ export function Register() {
           {...register("password")}
         />
 
-        <Button type="submit">Criar conta</Button>
+        <Button type="submit" className="mt-2" isLoading={isLoading}>
+          Criar conta
+        </Button>
       </form>
     </>
   );
