@@ -1,12 +1,24 @@
-import { useAuth } from "../../../app/hooks/useAuth";
-import { Button } from "../../components/Button";
+import { Logo } from "../../components/Logo";
+import { UserMenu } from "../../components/UserMenu";
+import { Accounts } from "./components/Accounts";
+import { Transactions } from "./components/Transactions";
 
 export function Dashborad() {
-  const { signout } = useAuth();
   return (
-    <div className="flex items-center justify-between px-10">
-      <h1 className="bg-red-500 h-10">Dashboard</h1>
-      <Button onClick={signout}>Sair</Button>
+    <div className="flex flex-col h-full w-full p-4 md:px-8 md:pb-8 md:pt-6 gap-4">
+      <header className="flex items-center justify-between h-12">
+        <Logo className="h-6 text-teal-900" />
+        <UserMenu />
+      </header>
+
+      <main className="flex flex-1 flex-col md:flex-row gap-4">
+        <div className="w-full m:md:w-1/2">
+          <Accounts />
+        </div>
+        <div className="w-full m:md:w-1/2">
+          <Transactions />
+        </div>
+      </main>
     </div>
   );
 }
