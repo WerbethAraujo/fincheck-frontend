@@ -1,6 +1,9 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+
 import { EyeIcon } from "../../../components/icons/EyeIcon";
 import { AccountsCard } from "./AccountCard";
+import { AccountsSliderNav } from "./AccountsSliderNav";
 
 export function Accounts() {
   return (
@@ -18,41 +21,43 @@ export function Accounts() {
       </div>
 
       <div className="flex flex-col justify-end flex-1">
-        <div className="flex items-center justify-between">
-          <strong className="text-white text-lg tracking-[-1px]">
-            Minhas contas
-          </strong>
-          <div>
-            <button
-              disabled
-              className="py-3 pl-2.5 pr-3.5 rounded-full enabled:hover:bg-black/10 transition-colors disabled:opacity-40"
+        <div>
+          <Swiper spaceBetween={16} slidesPerView={2.15}>
+            <div
+              className="flex items-center justify-between mb-4"
+              slot="container-start"
             >
-              <ChevronLeftIcon className="text-white w-6 h-6 " />
-            </button>
-            <button className="py-3 pl-2.5 pr-3.5 rounded-full enabled:hover:bg-black/10 transition-colors disabled:opacity-40">
-              <ChevronRightIcon className="text-white w-6 h-6" />
-            </button>
-          </div>
-        </div>
-        <div className="mt-4">
-          <AccountsCard
-            name="Nubank"
-            color="#7950f2"
-            balance={1000}
-            type="CASH"
-          />
-          <AccountsCard
-            name="Xp"
-            color="#333"
-            balance={1000}
-            type="INVESTMENT"
-          />
-          <AccountsCard
-            name="C6 Bank"
-            color="#0f0"
-            balance={1000}
-            type="CHECKING"
-          />
+              <strong className="text-white text-lg tracking-[-1px]">
+                Minhas contas
+              </strong>
+              <AccountsSliderNav />
+            </div>
+
+            <SwiperSlide>
+              <AccountsCard
+                name="Nubank"
+                color="#7950f2"
+                balance={1000}
+                type="CASH"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <AccountsCard
+                name="Xp"
+                color="#333"
+                balance={1000}
+                type="INVESTMENT"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <AccountsCard
+                name="C6 Bank"
+                color="#0f0"
+                balance={1000}
+                type="CHECKING"
+              />
+            </SwiperSlide>
+          </Swiper>
         </div>
       </div>
     </div>
