@@ -1,5 +1,4 @@
-import { formatCurrency } from "../../../../app/utils/formatCurrency";
-import { BankAccountTypeIcon } from "../../../components/icons/bankAccountTypeIcon";
+import { formatCurrency } from "../../../../../app/utils/formatCurrency";
 
 interface AccountCardProps {
   name: string;
@@ -29,3 +28,4 @@ export function AccountsCard({ name, color, balance, type }: AccountCardProps) {
     </div>
   );
 }
+import { BankAccountTypeIcon } from "../../../../components/icons/bankAccountTypeIcon";

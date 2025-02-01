@@ -1,11 +1,14 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-import { EyeIcon } from "../../../components/icons/EyeIcon";
+import { EyeIcon } from "../../../../components/icons/EyeIcon";
 import { AccountsCard } from "./AccountCard";
 import { AccountsSliderNav } from "./AccountsSliderNav";
+import { useAccountsController } from "./useAccountsController";
 
 export function Accounts() {
+  const { sliderState, setSliderState } = useAccountsController();
+
   return (
     <div className="flex flex-col bg-teal-900 rounded-2xl w-full h-full md:p-10 px-4 py-8">
       <div>
@@ -22,7 +25,16 @@ export function Accounts() {
 
       <div className="flex flex-col justify-end flex-1">
         <div>
-          <Swiper spaceBetween={16} slidesPerView={2.15}>
+          <Swiper
+            spaceBetween={16}
+            slidesPerView={2.15}
+            onSlideChange={(swiper) => {
+              setSliderState({
+                isBeginning: swiper.isBeginning,
+                isEnd: swiper.isEnd,
+              });
+            }}
+          >
             <div
               className="flex items-center justify-between mb-4"
               slot="container-start"
@@ -30,7 +42,10 @@ export function Accounts() {
               <strong className="text-white text-lg tracking-[-1px]">
                 Minhas contas
               </strong>
-              <AccountsSliderNav />
+              <AccountsSliderNav
+                isBeginning={sliderState.isBeginning}
+                isEnd={sliderState.isEnd}
+              />
             </div>
 
             <SwiperSlide>
