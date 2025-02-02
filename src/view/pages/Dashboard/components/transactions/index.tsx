@@ -5,10 +5,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { MONTHS } from "../../../../../app/config/constants";
 import { SliderOption } from "./SliderOption";
 import { SliderNavigation } from "./SliderNavigation";
+import { formatCurrency } from "../../../../../app/utils/formatCurrency";
+import { CategoryIcon } from "../../../../components/icons/categories/CategoriesIcons";
 
 export function Transactions() {
   return (
-    <div className="bg-gray-100 rounded-2xl w-full h-full md:p-10 px-4 py-8">
+    <div className="flex flex-col bg-gray-100 rounded-2xl w-full h-full md:p-10 px-4 py-8">
       <header>
         <div className=" flex items-center justify-between">
           <button className="flex items-center gap-2">
@@ -41,8 +43,33 @@ export function Transactions() {
           </Swiper>
         </div>
       </header>
+      <div className="mt-4 space-y-3 flex-1">
+        <div className="bg-white p-4 rounded-2xl flex items-center justify-between gap-4">
+          <div className="flex flex-1 items-center gap-3">
+            <CategoryIcon type="EXPENSE" />
+            <div className="flex flex-col">
+              <strong className="font-bold tracking-[-0.5px]">Rango</strong>
+              <span className="text-sm text-gray-600">10/04/1991</span>
+            </div>
+          </div>
+          <span className="font-medium text-red-800 tracking-[-0.5px]">
+            {formatCurrency(123)}
+          </span>
+        </div>
 
-      <div>Main</div>
+        <div className="bg-white p-4 rounded-2xl flex items-center justify-between gap-4">
+          <div className="flex flex-1 items-center gap-3">
+            <CategoryIcon type="INCOME" />
+            <div className="flex flex-col">
+              <strong className="font-bold tracking-[-0.5px]">Freela</strong>
+              <span className="text-sm text-gray-600">10/04/1991</span>
+            </div>
+          </div>
+          <span className="font-medium text-green-800 tracking-[-0.5px]">
+            {formatCurrency(250)}
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
