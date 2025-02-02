@@ -12,10 +12,10 @@ export function Dashborad() {
       </header>
 
       <main className="flex flex-1 flex-col md:flex-row gap-4">
-        <div className="w-full m:md:w-1/2">
+        <div className="w-full md:w-1/2">
           <Accounts />
         </div>
-        <div className="w-full m:md:w-1/2">
+        <div className="w-full md:w-1/2">
           <Transactions />
         </div>
       </main>
