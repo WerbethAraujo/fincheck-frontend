@@ -9,81 +9,109 @@ import { formatCurrency } from "../../../../../app/utils/formatCurrency";
 import { CategoryIcon } from "../../../../components/icons/categories/CategoriesIcons";
 import { useTransactionsController } from "./useTransactionsController";
 import { cn } from "../../../../../app/utils/cn";
+import { Spinner } from "../../../../components/Spinner";
+import emptyStateImage from "../../../../../assets/empty-state.svg";
 
 export function Transactions() {
-  const { areValuesVisible } = useTransactionsController();
+  const { areValuesVisible, isLoading, transactions } =
+    useTransactionsController();
 
   return (
     <div className="flex flex-col bg-gray-100 rounded-2xl w-full h-full md:p-10 px-4 py-8">
-      <header>
-        <div className=" flex items-center justify-between">
-          <button className="flex items-center gap-2">
-            <TransactionsIcon />
-            <span className="text-sm text-gray-800 tracking-[-0.5px] font-medium">
-              Transações
-            </span>
-            <ChevronDownIcon className="text-gray-900" />
-          </button>
-
-          <button>
-            <FilterIcon />
-          </button>
+      {isLoading && (
+        <div className="w-full h-full flex items-center justify-center">
+          <Spinner />
         </div>
+      )}
 
-        <div className="mt-6 relative">
-          <SliderNavigation />
-          <Swiper slidesPerView={3} centeredSlides>
-            {MONTHS.map((month, index) => (
-              <SwiperSlide key={month}>
-                {({ isActive }) => (
-                  <SliderOption
-                    isActive={isActive}
-                    month={month}
-                    index={index}
-                  />
-                )}
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </header>
-      <div className="mt-4 space-y-3 flex-1">
-        <div className="bg-white p-4 rounded-2xl flex items-center justify-between gap-4">
-          <div className="flex flex-1 items-center gap-3">
-            <CategoryIcon type="EXPENSE" />
-            <div className="flex flex-col">
-              <strong className="font-bold tracking-[-0.5px]">Rango</strong>
-              <span className="text-sm text-gray-600">10/04/1991</span>
+      {!isLoading && (
+        <>
+          <header>
+            <div className=" flex items-center justify-between">
+              <button className="flex items-center gap-2">
+                <TransactionsIcon />
+                <span className="text-sm text-gray-800 tracking-[-0.5px] font-medium">
+                  Transações
+                </span>
+                <ChevronDownIcon className="text-gray-900" />
+              </button>
+
+              <button>
+                <FilterIcon />
+              </button>
             </div>
-          </div>
-          <span
-            className={cn(
-              "font-medium text-red-800 tracking-[-0.5px]",
-              !areValuesVisible && "blur-sm"
-            )}
-          >
-            {formatCurrency(123)}
-          </span>
-        </div>
 
-        <div className="bg-white p-4 rounded-2xl flex items-center justify-between gap-4">
-          <div className="flex flex-1 items-center gap-3">
-            <CategoryIcon type="INCOME" />
-            <div className="flex flex-col">
-              <strong className="font-bold tracking-[-0.5px]">Freela</strong>
-              <span className="text-sm text-gray-600">10/04/1991</span>
+            <div className="mt-6 relative">
+              <SliderNavigation />
+              <Swiper slidesPerView={3} centeredSlides>
+                {MONTHS.map((month, index) => (
+                  <SwiperSlide key={month}>
+                    {({ isActive }) => (
+                      <SliderOption
+                        isActive={isActive}
+                        month={month}
+                        index={index}
+                      />
+                    )}
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
-          </div>
-          <span
-            className={cn(
-              "font-medium text-green-800 tracking-[-0.5px]",
-              !areValuesVisible && "blur-sm"
+          </header>
+          <div className="mt-4 space-y-2 flex-1 overflow-y-auto">
+            {transactions.length === 0 && (
+              <div>
+                <div>
+                  <img src={emptyStateImage} alt="Empty state image" />
+                  <p>Nao encontramos nenhuma transação!</p>
+                </div>
+              </div>
             )}
-          >
-            {formatCurrency(250)}
-          </span>
-        </div>
-      </div>
+            {transactions.length > 0 && (
+              <>
+                <div className="bg-white p-4 rounded-2xl flex items-center justify-between gap-4">
+                  <div className="flex flex-1 items-center gap-3">
+                    <CategoryIcon type="EXPENSE" />
+                    <div className="flex flex-col">
+                      <strong className="font-bold tracking-[-0.5px]">
+                        Rango
+                      </strong>
+                      <span className="text-sm text-gray-600">10/04/1991</span>
+                    </div>
+                  </div>
+                  <span
+                    className={cn(
+                      "font-medium text-red-800 tracking-[-0.5px]",
+                      !areValuesVisible && "blur-sm"
+                    )}
+                  >
+                    {formatCurrency(123)}
+                  </span>
+                </div>
+                <div className="bg-white p-4 rounded-2xl flex items-center justify-between gap-4">
+                  <div className="flex flex-1 items-center gap-3">
+                    <CategoryIcon type="INCOME" />
+                    <div className="flex flex-col">
+                      <strong className="font-bold tracking-[-0.5px]">
+                        Freela
+                      </strong>
+                      <span className="text-sm text-gray-600">10/04/1991</span>
+                    </div>
+                  </div>
+                  <span
+                    className={cn(
+                      "font-medium text-green-800 tracking-[-0.5px]",
+                      !areValuesVisible && "blur-sm"
+                    )}
+                  >
+                    {formatCurrency(250)}
+                  </span>
+                </div>
+              </>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }
