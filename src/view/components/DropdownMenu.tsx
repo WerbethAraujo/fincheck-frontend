@@ -11,7 +11,7 @@ export function DropdownMenuTrigger({
   children: React.ReactNode;
 }) {
   return (
-    <RdxDropdownMenu.Trigger className="outline-none">
+    <RdxDropdownMenu.Trigger className="outline-none" asChild>
       {children}
     </RdxDropdownMenu.Trigger>
   );
