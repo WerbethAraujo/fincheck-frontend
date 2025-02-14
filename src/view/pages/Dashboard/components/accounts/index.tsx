@@ -18,6 +18,7 @@ export function Accounts() {
     toggleValuesVisibility,
     isLoading,
     accounts,
+    handleOpenNewAccountModal,
   } = useAccountsController();
 
   return (
@@ -60,6 +61,7 @@ export function Accounts() {
                   </strong>
                 </div>
                 <button
+                  onClick={handleOpenNewAccountModal}
                   className="flex flex-col items-center justify-center mt-4 h-52 rounded-2xl
                 border-2 border-dashed border-teal-600 gap-4 text-white"
                 >
