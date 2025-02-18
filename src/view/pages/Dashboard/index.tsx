@@ -6,6 +6,7 @@ import { DashboradProvider } from "./components/dashboardContext";
 import { Fab } from "./components/fab";
 import { Transactions } from "./components/transactions";
 import { NewAccountModal } from "./modals/newAccountsModal";
+import { NewTransactionModal } from "./modals/newTransactionModal";
 
 export function Dashborad() {
   return (
@@ -26,6 +27,7 @@ export function Dashborad() {
         </main>
         <Fab />
         <NewAccountModal />
+        <NewTransactionModal />
       </div>
     </DashboradProvider>
   );
